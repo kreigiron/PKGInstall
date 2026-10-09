@@ -74,3 +74,13 @@ CMakeLists.txt.user*
 *.dll
 *.exe
 
+# makepkg generated artifacts
+*.pkg.tar.zst
+*.pkg.tar.zst.sig
+*.pkg.tar.xz
+*.pkg.tar.xz.sig
+*.src.tar.gz
+*.src.tar.zst
+packaging/arch/src/
+packaging/arch/pkg/
+packaging/arch/pkginstall-git/

@@ -1,0 +1,9 @@
+/src/
+/pkg/
+/pkginstall-git/
+*.pkg.tar.zst
+*.pkg.tar.zst.sig
+*.pkg.tar.xz
+*.pkg.tar.xz.sig
+*.src.tar.gz
+*.src.tar.zst

@@ -1,0 +1,20 @@
+pkgbase = pkginstall-git
+	pkgdesc = Qt6 GUI to extract and install PlayStation 4 .pkg files into a shadPS4 install folder
+	pkgver = r6.d63c9cb
+	pkgrel = 1
+	url = https://github.com/kreigiron/PKGInstall
+	arch = x86_64
+	arch = aarch64
+	license = GPL-2.0-or-later
+	makedepends = cmake
+	makedepends = ninja
+	makedepends = git
+	makedepends = fmt
+	depends = qt6-base
+	depends = zlib
+	provides = pkginstall
+	conflicts = pkginstall
+	source = pkginstall-git::git+https://github.com/kreigiron/PKGInstall.git
+	sha256sums = SKIP
+
+pkgname = pkginstall-git

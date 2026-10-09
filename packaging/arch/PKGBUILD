@@ -1,0 +1,38 @@
+# Maintainer: kreigiron <https://github.com/kreigiron>
+pkgname=pkginstall-git
+pkgver=r6.d63c9cb
+pkgrel=1
+pkgdesc="Qt6 GUI to extract and install PlayStation 4 .pkg files into a shadPS4 install folder"
+arch=('x86_64' 'aarch64')
+url="https://github.com/kreigiron/PKGInstall"
+license=('GPL-2.0-or-later')
+depends=('qt6-base' 'zlib')
+makedepends=('cmake' 'ninja' 'git' 'fmt')
+provides=('pkginstall')
+conflicts=('pkginstall')
+source=("$pkgname::git+https://github.com/kreigiron/PKGInstall.git")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd "$pkgname"
+  printf 'r%s.%s' "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+prepare() {
+  cd "$pkgname"
+  git submodule update --init --recursive
+}
+
+build() {
+  cmake -S "$pkgname" -B build -G Ninja \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+  cmake --build build --parallel
+}
+
+package() {
+  install -Dm755 "build/PKGInstall" "$pkgdir/usr/bin/PKGInstall"
+  install -Dm644 "$pkgname/dist/PKGInstall.desktop" "$pkgdir/usr/share/applications/PKGInstall.desktop"
+  install -Dm644 "$pkgname/dist/PKGIcon.png" "$pkgdir/usr/share/icons/hicolor/256x256/apps/PKGIcon.png"
+}
