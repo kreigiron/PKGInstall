@@ -1,4 +1,4 @@
-!/bin/bash -ex
+#!/bin/bash -ex
 
 if grep -nrI '\s$' src *.yml *.txt *.md Doxyfile .gitignore .gitmodules .ci* dist/*.desktop \
                  dist/*.svg dist/*.xml; then
